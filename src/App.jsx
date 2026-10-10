@@ -53,6 +53,7 @@ function App() {
         <button className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem' }}>Inscreva-se</button>
       </nav>
 
+     <script defer src="https://t.contentsquare.net/uxa/b7ff0f5d27693.js"></script>
       <main>
         <section className="hero container">
           <h1>Programação Orientada ao Mercado</h1>

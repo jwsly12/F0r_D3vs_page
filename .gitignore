@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Contentsquare wizard (generated)
+.cs-wizard/
