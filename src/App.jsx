@@ -14,7 +14,7 @@ function App() {
     posthog.onFeatureFlags(() => {
       // Obtém a variante configurada para o experimento 'cta-button-test'
       const flagVariant = posthog.getFeatureFlag('cta-button-test')
-      
+
       if (flagVariant === 'test') {
         setVariant('test')
       } else {
@@ -27,12 +27,12 @@ function App() {
   const handleCtaClick = () => {
     // Registo do evento de conversão no PostHog com a variante usada
     posthog.capture('clicked_main_cta', { variant_used: variant })
-    
+
     // Registo do mesmo evento de conversão no Google Analytics 4
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'clicked_main_cta', { variant_used: variant })
     }
-    
+
     // Ação do botão (ex: redirecionar para checkout ou abrir modal)
     alert(`Evento registado!\nVariante usada: ${variant}`)
   }
@@ -42,8 +42,8 @@ function App() {
     ? { background: 'linear-gradient(135deg, #10b981, #059669)', boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.4)' }
     : { background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.4)' }
 
-  const ctaText = !flagsLoaded 
-    ? 'A carregar...' 
+  const ctaText = !flagsLoaded
+    ? 'A carregar...'
     : (variant === 'test' ? '🚀 Garantir Minha Vaga (Grátis)' : 'Começar Jornada')
 
   return (
@@ -53,7 +53,15 @@ function App() {
         <button className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem' }}>Inscreva-se</button>
       </nav>
 
-     <script defer src="https://t.contentsquare.net/uxa/b7ff0f5d27693.js"></script>
+      <script defer src="https://t.contentsquare.net/uxa/b7ff0f5d27693.js"></script>
+      <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p = null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="gu mu yu bu ku init Qu Zu Wu Vu Yu el Gu ec zu lc uc cc hc dc vc capture getExtension Ju fu mc calculateEventProperties gc register register_once register_for_session unregister unregister_for_session wc Uu yc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync kc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset Sc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty bc rc createPersonProfile setInternalOrTestUser Cu xu opt_in_capturing opt_out_capturing $u has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing nc debug il Os getPageViewId captureTraceFeedback captureTraceMetric Nu".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_sTGCPS6rQbtdJ7kWqYPzfPhUtodABjsLxkywLBNDeNey', {
+          api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+      </script>
       <main>
         <section className="hero container">
           <h1>Programação Orientada ao Mercado</h1>
@@ -61,10 +69,10 @@ function App() {
             Domine as tecnologias mais exigidas pelas empresas. Aprenda não apenas a codar,
             mas a tomar decisões baseadas em dados através da <strong>Lógica de Teste A/B e Eventos</strong>.
           </p>
-          
+
           {/* O nosso Botão CTA que muda conforme a Feature Flag */}
-          <button 
-            onClick={handleCtaClick} 
+          <button
+            onClick={handleCtaClick}
             className="btn-primary"
             style={ctaStyles}
           >
@@ -81,8 +89,8 @@ function App() {
                 interagem com sua aplicação e qual interface gera mais conversão.
               </p>
               <p>
-                <strong>Exemplo Real:</strong> O botão principal desta página neste exato momento está a usar 
-                o PostHog para determinar a sua cor e texto. Estás atualmente a ver a variante: 
+                <strong>Exemplo Real:</strong> O botão principal desta página neste exato momento está a usar
+                o PostHog para determinar a sua cor e texto. Estás atualmente a ver a variante:
                 <strong style={{ color: variant === 'test' ? '#10b981' : '#3b82f6', marginLeft: '0.5rem' }}>
                   {variant.toUpperCase()}
                 </strong>
